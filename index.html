@@ -6,6 +6,9 @@
       margin: 0;
       padding: 0;
     }
+    .row {
+      line-height: 0;
+    }
     .wall {
       background-color: blue; 
       height: 40px; 
@@ -19,52 +22,102 @@
       display: inline-block;
     }
     .sushi {
-      background-color: blue; 
+      background-color: black; 
       height: 40px; 
       width:  40px;
       display: inline-block;
+      background-image: url('sushi.png');
+      background-size: contain;
+    }
+    #NinjaMan {
+      background-color: black; 
+      height: 40px; 
+      width:  40px;
+      display: inline-block;
+      background-image: url('ninja.gif');
+      background-size: contain;
+      position: absolute;
     }
     </style>
   </head>
   <body>
-    <div id ='world'>
-      <div class='row'>
-          <div class = 'wall'></div>
-          <div class = 'wall'></div>
-          <div class = 'wall'></div>
-          <div class = 'wall'></div>
-          <div class = 'wall'></div>
-      </div>
-      <div class='row'>
-          <div class = 'wall'></div>
-          <div class = 'blank'></div>
-          <div class = 'sushi'></div>
-          <div class = 'sushi'></div>
-          <div class = 'wall'></div>
-      </div>
-      <div class='row'>
-          <div class = 'wall'></div>
-          <div class = 'sushi'></div>
-          <div class = 'wall'></div>
-          <div class = 'wall'></div>
-          <div class = 'sushi'></div>
-      </div>
-      <div class='row'>
-          <div class = 'wall'></div>
-          <div class = 'sushi'></div>
-          <div class = 'sushi'></div>
-          <div class = 'sushi'></div>
-          <div class = 'wall'></div>
-      </div>
-      <div class='row'>
-          <div class = 'wall'></div>
-          <div class = 'wall'></div>
-          <div class = 'wall'></div>
-          <div class = 'wall'></div>
-          <div class = 'wall'></div>
-      </div>
-    </div>
-    
+      <div id ='world'></div>
+      <div id = 'NinjaMan'></div>
   </body>
+  <script type="text/javascript">
+    var world = [
+      [1,1,1,1,1],
+      [1,0,2,2,1],
+      [1,2,1,2,1],
+      [1,2,2,2,1],
+      [1,0,2,2,1],
+      [1,2,1,2,1],
+      [1,2,2,2,1],
+      [1,0,2,2,1],
+      [1,2,1,2,1],
+      [1,2,2,2,1],
+      [1,1,1,1,1],
+
+
+    ];
+
+    var worldDict = {
+      0: 'blank',
+      1: 'wall',
+      2: 'sushi'
+    }
+
+    function drawWorld(){
+      output = "";
+      for(var row = 0; row < world.length; row++){
+        output += "<div class = 'row'>"
+        for(var x = 0; x < world[row].length; x++){
+          output += "< div class = '" + worldDict[world[row][x]] + "'></div>"
+        }
+        output +="</div>"
+      }
+
+      document.getElementById('world').innerHTML =
+      output;
+
+    }
+    drawWorld()
+
+    var NinjaMan = {
+      x: 8,
+      y: 8
+    }
+
+    function darwNinjaMan(){
+      document.getElementById('NinjaMan').style.top = 
+        NinjaMan.y * 40 + 'px'
+        document.getElementById('NinjaMan').style.top = 
+        NinjaMan.x * 40 + 'px'
+    }
+    darwNinjaMan()
+
+    document.onkeydown = function(e){
+        if(e.keyCode == 37) { // LEFT
+          if(world[NinjaMan.y][NinjaMan.x - 1] != 1)
+          NinjaMan.x --;
+        }
+        else if (e.keyCode == 39) { // RIGHT
+          if(world[NinjaMan.y][NinjaMan.x + 1] != 1)
+          NinjaMan.x ++;
+        }
+        else if (e.keyCode == 40) { // DOWN
+          if(world[NinjaMan.y +1][NinjaMan.x] != 1)
+          NinjaMan.y ++;
+        }
+        else if (e.keyCode == 38) { // Up
+          if(world[NinjaMan.y +1][NinjaMan.x] != 1)
+          NinjaMan.y --;
+        }
+        world[NinjaMan.y][NinjaMan.x] = 0;
+        darwNinjaMan()
+        drawWorld()
+      }
+
+  </script>
 
 </html>
