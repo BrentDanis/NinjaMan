@@ -29,7 +29,7 @@
       background-image: url('sushi.png');
       background-size: contain;
     }
-    #NinjaMan {
+    #ninjaman {
       background-color: black; 
       height: 40px; 
       width:  40px;
@@ -42,7 +42,7 @@
   </head>
   <body>
       <div id ='world'></div>
-      <div id = 'NinjaMan'></div>
+      <div id = 'ninjaman'></div>
   </body>
   <script type="text/javascript">
     var world = [
@@ -83,41 +83,42 @@
     }
     drawWorld()
 
-    var NinjaMan = {
+    var ninjaman = {
       x: 8,
       y: 8
     }
 
-    function darwNinjaMan(){
-      document.getElementById('NinjaMan').style.top = 
-        NinjaMan.y * 40 + 'px'
-        document.getElementById('NinjaMan').style.top = 
-        NinjaMan.x * 40 + 'px'
+    function darwNinjaman(){
+      document.getElementById('ninjaman').style.top = 
+        ninjaman.y * 40 + 'px'
+        document.getElementById('ninjaman').style.top = 
+        ninjaman.x * 40 + 'px'
     }
-    darwNinjaMan()
+    darwNinjaman()
 
     document.onkeydown = function(e){
         if(e.keyCode == 37) { // LEFT
-          if(world[NinjaMan.y][NinjaMan.x - 1] != 1)
-          NinjaMan.x --;
+          if(world[NinjaMan.y][ninjaman.x - 1] != 1)
+          ninjaman.x --;
         }
         else if (e.keyCode == 39) { // RIGHT
-          if(world[NinjaMan.y][NinjaMan.x + 1] != 1)
-          NinjaMan.x ++;
+          if(world[ninjaman.y][ninjaman.x + 1] != 1)
+          ninjaman.x ++;
         }
         else if (e.keyCode == 40) { // DOWN
-          if(world[NinjaMan.y +1][NinjaMan.x] != 1)
-          NinjaMan.y ++;
+          if(world[ninjaman.y +1][ninjaman.x] != 1)
+          ninjaman.y ++;
         }
         else if (e.keyCode == 38) { // Up
-          if(world[NinjaMan.y +1][NinjaMan.x] != 1)
-          NinjaMan.y --;
+          if(world[ninjaman.y +1][ninjaman.x] != 1)
+          ninjaman.y --;
         }
-        world[NinjaMan.y][NinjaMan.x] = 0;
-        darwNinjaMan()
+        world[ninjaman.y][ninjaman.x] = 0;
+        darwNinjaman()
         drawWorld()
       }
 
   </script>
 
 </html>
+
