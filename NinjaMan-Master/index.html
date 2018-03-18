@@ -43,7 +43,7 @@
   </head>
   <body>
       <div id ='world'></div>
-      <div id = 'ninjaman'></div>
+      <div id ='ninjaman'></div>
   </body>
   <script type="text/javascript">
     var world = [
@@ -70,10 +70,10 @@
 
     function drawWorld(){
       output = "";
-      for(var row = 0; row < world.length; row++){
+      for (var row = 0; row < world.length; row++){
         output += "<div class = 'row'>"
-        for(var x = 0; x < world[row].length; x++){
-          output += "< div class = '" + worldDict[world[row][x]] + "'></div>"
+        for (var x = 0; x < world[row].length; x++){
+          output += "< div class = '" + worldDict[world[row][x]] +"'></div>"
         }
         output +="</div>"
       }
@@ -92,7 +92,7 @@
     function darwNinjaman(){
       document.getElementById('ninjaman').style.top = 
         ninjaman.y * 40 + 'px'
-        document.getElementById('ninjaman').style.top = 
+        document.getElementById('ninjaman').style.left = 
         ninjaman.x * 40 + 'px'
     }
     darwNinjaman()
@@ -107,12 +107,12 @@
           ninjaman.x ++;
         }
         else if (e.keyCode == 40) { // DOWN
-          if(world[ninjaman.y +1][ninjaman.x] != 1)
-          ninjaman.y ++;
+          if(world[ninjaman.y + 1][ninjaman.x] != 1)
+          ninjaman.y++;
         }
         else if (e.keyCode == 38) { // Up
-          if(world[ninjaman.y +1][ninjaman.x] != 1)
-          ninjaman.y --;
+          if(world[ninjaman.y - 1][ninjaman.x] != 1)
+          ninjaman.y--;
         }
         world[ninjaman.y][ninjaman.x] = 0;
         darwNinjaman()
