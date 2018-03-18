@@ -30,6 +30,14 @@
       background-image: url('sushi.png');
       background-size: contain;
     }
+    .onigiri {
+      background-color: black; 
+      height: 40px; 
+      width:  40px;
+      display: inline-block;
+      background-image: url('onigiri.png');
+      background-size: contain;
+    }
     #ninjaman {
       background-color: black; 
       height: 40px; 
@@ -48,15 +56,15 @@
   <script type="text/javascript">
     var world = [
       [1,1,1,1,1],
-      [1,0,2,2,1],
+      [1,0,3,2,1],
       [1,2,1,2,1],
       [1,2,2,2,1],
       [1,0,2,2,1],
       [1,2,1,2,1],
       [1,2,2,2,1],
-      [1,0,2,2,1],
+      [1,0,3,2,1],
       [1,2,1,2,1],
-      [1,2,2,2,1],
+      [1,2,2,3,1],
       [1,1,1,1,1],
 
 
@@ -65,7 +73,8 @@
     var worldDict = {
       0: 'blank',
       1: 'wall',
-      2: 'sushi'
+      2: 'sushi',
+      3: 'onigiri'
     }
 
     function drawWorld(){
@@ -114,7 +123,12 @@
           if(world[ninjaman.y - 1][ninjaman.x] != 1)
           ninjaman.y--;
         }
-        world[ninjaman.y][ninjaman.x] = 0;
+        world[ninjaman.y][ninjaman.x] = 0;{
+          var count = 0;
+          if(ninjaman == e.keyCode){
+            count = count + 1;
+          }
+        }
         darwNinjaman()
         drawWorld()
       }
